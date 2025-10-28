@@ -3,11 +3,22 @@ import Calificacion from './components/Calificacion';
 import EnergiaPersonaje from './components/EnergiaPersonaje';
 import MeditorEmocion from './components/MeditorEmocion';
 import TituloCalificacion from './components/TituloCalificacion';
+import MiComponente from './components/MiComponente';
 
 function App() {
 
+    //const miArticulo = "Libro";
+
   return (
     <div>
+
+      <MiComponente></MiComponente>
+
+      <br /><br /><br /><br /><br />
+      <hr />
+      <hr />
+      <hr />
+
       <TituloCalificacion />
       <Calificacion titulo={"🍕 Califica la Pizza"} maxEstrellas={5} calificacionInicial={0} />
 
