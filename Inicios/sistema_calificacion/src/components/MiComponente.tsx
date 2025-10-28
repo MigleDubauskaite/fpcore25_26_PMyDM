@@ -81,7 +81,13 @@ function MiComponente() {
                 onChange={(e) => {
                     // cada vez que se introduce una letra se va a decir el valor de input
                     // target is a property of an event object that refers to the element that triggered the event
+
+                    // input contiene target y target contiene value: 
+                    // cuando se cambia el valor de value el valor de texto introducido se cambia
                     setTextoIntroducido(e.target.value);
+
+                    //e.target hace referencia al elemento que provocó el evento, en este caso, el input.
+                    //e.target.value es el texto que el usuario ha escrito dentro del input.
 
                 }} />
             <p>Estás escribiendo: {textoIntroducido}</p>
