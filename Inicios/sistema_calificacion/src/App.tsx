@@ -5,6 +5,7 @@ import MeditorEmocion from './components/MeditorEmocion';
 import TituloCalificacion from './components/TituloCalificacion';
 import MiComponente from './components/MiComponente';
 import PracticandoFragment from './components/PracticandoFragment';
+import MiComponente2 from './components/MiComponente2';
 
 function App() {
 
@@ -12,6 +13,12 @@ function App() {
 
   return (
     <div>
+
+      <MiComponente2></MiComponente2>
+      <br /><br /><br /><br /><br />
+      <hr />
+      <hr />
+      <hr />
 
       <PracticandoFragment></PracticandoFragment>
       <br /><br /><br /><br /><br />
