@@ -1,19 +1,22 @@
-import { useState } from 'react'
 import './App.css'
-import Contador1 from './components/Contador1'
-import SelectorIdioma from './components/SelectorIdioma';
+import SelectorIdioma from './components/_2SelectorIdioma';
+import _1Contador from './components/_1Contador';
+import _3CalculadoraPropina from './components/_3CalculadoraPropina';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <div>
-        <Contador1></Contador1>
+        <_1Contador></_1Contador>
       </div>
 
       <div>
-        <SelectorIdioma titulo={""} texto={""} botones={""}></SelectorIdioma>
+        <SelectorIdioma></SelectorIdioma>
+      </div>
+
+      <div>
+        <_3CalculadoraPropina></_3CalculadoraPropina>
       </div>
     </>
   )
