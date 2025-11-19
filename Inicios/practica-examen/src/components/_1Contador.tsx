@@ -1,9 +1,51 @@
-import { useState } from "react";
+import { useState, type JSX } from "react";
+import './_1Contador.css'
 
-function _1Contador(){
+// historial:
+type ElementoHistorial = {
+    id: number,
+    valor: number,
+    fecha: Date,
+}
+
+function _1Contador() : JSX.Element{
 
     // 1: contador:
-    const [numero, setNumero] = useState<number>(0);
+    const [valor, setValor] = useState<number>(0);
+
+    // 2: historial
+    const [historial, setHistorial] = useState<ElementoHistorial[]>([{id: 1, valor: 0, fecha: new Date()}]);
+
+    function aumentarValor(n: number){
+
+        let maximoID = 0;
+
+        historial.forEach((h) => maximoID = h.id > maximoID ? h.id : maximoID );
+
+        const nuevoValor:number = (valor + n < 0) ? 0 : valor + n;
+
+        setValor(nuevoValor);
+
+        setHistorial([...historial, {
+            id: maximoID + 1,
+            valor: nuevoValor ,
+            fecha: new Date()
+        }]);
+
+    }
+
+    function resetValor(){
+
+        setValor(0);
+
+        setHistorial([...historial, {
+            id:  1,
+            valor: 0,
+            fecha: new Date()
+        }]);
+
+
+    }
 
     return(
         <>
@@ -11,15 +53,24 @@ function _1Contador(){
 
             <div style={{border: '3px solid #E49BA6', padding: 20, marginBottom: 20}}>
                 <h1>Contador con historial</h1>
-                <h3>Valor del contador: {numero} </h3>
+                <h3>Contador: {valor} </h3>
 
-                <button onClick={()=>{setNumero(numero <= 0 ? 0 : numero - 1)}}>➖</button>
-                <button onClick={()=>{setNumero(0)}}>⭕</button>
-                <button onClick={()=>{setNumero(numero + 1)}}>➕</button>
+                <button onClick={()=>{aumentarValor(-1)}}>➖</button>
+                <button onClick={()=>{resetValor()}}>⭕</button>
+                <button onClick={()=>{aumentarValor(1)}}>➕</button>
             </div>
 
             <div style={{border: '3px solid #E49BA6', padding: 20}}>
-                <h3>Historial de valores: </h3>
+                <h3>Histórico del contador: </h3>
+
+                <ul>
+                    {historial.map(h => 
+                        <li key={h.id}>
+                            {h.id} → {h.valor} → {h.fecha.toString()}
+                         </li>
+                    )}
+                </ul>
+
             </div>
         </div>
         </>

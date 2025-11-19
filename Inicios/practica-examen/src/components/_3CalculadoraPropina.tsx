@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, type JSX } from "react";
+import './_3CalculadoraPropina.css'
 
-function _3CalculadoraPropina(){
+function _3CalculadoraPropina() : JSX.Element {
 
     // importe
     const [importe, setImporte] = useState<string>('0.0');
@@ -29,9 +30,9 @@ function _3CalculadoraPropina(){
             <div style={{border: '4px solid #DDC57A', margin: '50px'}}>
                 <h2>Porcentaje de propina: </h2>
                 <div>
-                    <button style={{backgroundColor: '#AAC4F5'}} onClick={()=> {setPropina(10)}}>10%</button>
-                    <button style={{backgroundColor: '#AAC4F5'}} onClick={()=> {setPropina(15)}}>15%</button>
-                    <button style={{backgroundColor: '#AAC4F5'}} onClick={()=> {setPropina(20)}}>20%</button>
+                    <button onClick={()=> {setPropina(10)}}>10%</button>
+                    <button onClick={()=> {setPropina(15)}}>15%</button>
+                    <button onClick={()=> {setPropina(20)}}>20%</button>
                 </div>
             </div>
 

@@ -1,0 +1,27 @@
+h2, h3, p, button {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    font-size: 15px;
+    padding: 5px 10px;
+    margin: 0 10px;
+    background-color: #D2DCB6;
+    border: 0;
+    border-radius: 3px; 
+}
+button:hover {
+    background-color: beige;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 2px 0;
+    margin: 5px auto;
+    background-color: azure;
+    max-width: 300px;
+}

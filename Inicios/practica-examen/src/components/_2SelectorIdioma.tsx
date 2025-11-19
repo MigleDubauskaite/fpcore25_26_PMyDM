@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, type JSX } from "react";
+import './_2SelectorIdioma.css'
 
 // Esto es un union type en TypeScript.
 // Significa que una variable de tipo IdiomasDiponibles solo puede tener uno de estos valores exactos: 
@@ -19,7 +20,7 @@ type Traduciones = {
     }
 }
 
-function SelectorIdioma() {
+function SelectorIdioma() : JSX.Element {
 
     // textosTraducidos solo tiene las claves definidas en IdiomasDiponibles.
     // Pero idioma: string podría ser cualquier string, así que TS no puede inferir el tipo exacto.

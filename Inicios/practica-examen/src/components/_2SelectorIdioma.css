@@ -1,0 +1,23 @@
+h2, h3, button, p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2, h3, p, div {
+    text-align: center;
+}
+
+button {
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 0;
+    background-color: #D34E4E;
+}
+
+button.activo {
+    background-color: #09f;
+}
+
+button:hover {
+    background-color: #f90;
+}
