@@ -80,12 +80,13 @@ function SelectorIdioma() : JSX.Element {
         <>
             <div style={{ marginTop: 50, border: '3px solid #87BAC3' }}>
                 <h1 style={{ color: '#53629E' }}>{textos.titulo}</h1>
+                <h2>{textos.saludo}</h2>
                 <h3>{textos.texto}</h3>
                 <p>{textos.mensaje}</p>
 
                 <div style={{ marginBottom: 20 }}>
 
-                      {opcionesBotones.map((opcion) => (
+                    {opcionesBotones.map((opcion) => (
                      <button key={opcion.code} 
                         // opcion.code es un string por defecto.
                         // Para que TypeScript reconozca que es un IdiomasDiponibles, puedes hacer un cast:

@@ -3,16 +3,10 @@ import './_3CalculadoraPropina.css'
 
 function _3CalculadoraPropina() : JSX.Element {
 
-    // importe
     const [importe, setImporte] = useState<string>('0.0');
-
-    // porcentaje
     const [propina, setPropina] = useState <number> (0);
 
-    // importe propina
-    const importeDePropina:number = Number(importe) * propina/100;
-
-    // total
+    const importeDePropina = Number(importe) * propina/100;
     const totalPagar = Number(importe) + importeDePropina;
 
     return(
@@ -23,7 +17,10 @@ function _3CalculadoraPropina() : JSX.Element {
             <div style={{border: '4px solid #F9E7B2', margin: '50px'}}>
                 <h2>Importe de la cuenta:</h2>
                 
-                <input type="number" placeholder="0.00" onChange={(e) => {setImporte(e.target.value)}}></input>
+                <input 
+                    type="number" 
+                    placeholder="0.00" 
+                    onChange={(e) => setImporte(e.target.value)}></input>
 
             </div>
 
@@ -38,9 +35,9 @@ function _3CalculadoraPropina() : JSX.Element {
 
             <div style={{border: '4px solid #CE7E5A', margin: '50px', backgroundColor: '#FFF2C6'}}>
                 <h2>Desglose</h2>
-                <p>Cuenta: {importe}€</p>
-                <p>Propina ({propina}%): {importeDePropina}€</p>
-                <p>Total a pagar: {totalPagar}€</p>
+                <p>Cuenta: {Number(importe).toFixed(2)}€</p>
+                <p>Propina ({propina}%): {importeDePropina.toFixed(2)}€</p>
+                <p>Total a pagar: {totalPagar.toFixed(2)}€</p>
             </div>
 
         </div>
