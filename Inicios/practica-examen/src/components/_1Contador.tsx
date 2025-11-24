@@ -31,10 +31,20 @@ function _1Contador(): JSX.Element {
 
     }
 
-    function resetValor() {
+    /* function resetValor() {
 
         setValor(0);
         agregarHistorial(0);
+    } */
+
+           const resetValor = () => {
+        setValor(0)
+        setHistorial([{
+            id: 1, 
+            valor: 0, 
+            fecha: new Date()
+        }])
+        // inicializar el histórico con la entrada del 0
     }
 
     return (
