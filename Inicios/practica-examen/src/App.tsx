@@ -21,6 +21,8 @@ import SelectorGeneroMusica from './components/otro1/2SelectorGeneroMusica';
 import Calculadora4 from './components/4/3Calculadora';
 import CalculadoraVelocidad from './components/otro1/3CalculadoraVelocidad';
 import CalculadoraSueldo from './components/otro1/3CalculadoraSueldo';
+import Nota4 from './components/4/4Nota';
+import Lista4 from './components/4/5Lista';
 
 function App() {
 
@@ -40,6 +42,9 @@ function App() {
       <Contador4></Contador4>
       <Traductor4></Traductor4>
       <Calculadora4></Calculadora4>
+      <Nota4></Nota4>
+      <Lista4></Lista4>
+
     </div>
 
       <div>
