@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  border: 2px solid grey;
+}
+
+td,
+tr,
+th {
+  padding: 10px;
+  border: 2px solid grey;
+}
+
+th {
+  background-color: rgba(109, 144, 238, 0.333);
+  color: rgb(50, 57, 63);
+}
+
+.eliminar {
+  background-color: rgb(247, 113, 113);
+}
+
+input {
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.mensajeVacio {
+  font-style: italic;
+  color: rgb(62, 90, 90);
+}
+
+.agregar{
+  background-color: rgb(188, 201, 212);
+}

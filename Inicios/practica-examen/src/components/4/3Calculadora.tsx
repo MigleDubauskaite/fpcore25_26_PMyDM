@@ -6,7 +6,7 @@ function Calculadora4() : JSX.Element{
     const [propina, setPropina] = useState<number>(0);
 
     const valorPropina = Number(importe) * propina / 100;
-    const total = Number(importe) + valorPropina;
+    const total = Number(importe) - valorPropina;
 
     return (
         <>

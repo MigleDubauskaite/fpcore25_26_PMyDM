@@ -1,0 +1,40 @@
+#button-asignatura .in {
+    background-color: rgb(199, 201, 196);
+    flex-wrap: wrap;
+}
+
+.matematicas {
+    border: 3px solid rgb(13, 54, 236);
+    color: rgb(13, 54, 236);
+}
+
+.matematicas .active {
+    background-color: rgb(13, 54, 236);
+}
+
+.ingles {
+    border: 3px solid rgb(97, 238, 109);
+    color: rgb(97, 238, 109);
+}
+
+.ingles .active {
+    background-color: rgb(97, 238, 109);
+}
+
+.ciencias {
+    border: 3px solid rgb(136, 10, 240);
+    color: rgb(136, 10, 240);
+}
+
+.ciencias .active {
+    background-color: rgb(136, 10, 240);
+}
+
+.historia {
+    border: 3px solid rgb(255, 131, 15);
+    color: rgb(255, 131, 15);
+}
+
+.historia .active {
+    background-color: rgb(255, 131, 15);
+}
