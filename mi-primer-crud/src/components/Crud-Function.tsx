@@ -8,65 +8,110 @@ interface User {
     phone: string;
 }
 
-function CrudUsers() {
+//https://chatgpt.com/share/69396155-2bbc-8010-8ec1-ffeed8e36546
 
+export default function CrudUser() {
     const [loading, setLoading] = useState<boolean>(false);
     const [users, setUsers] = useState<User[]>([]);
 
+    const [user, setUser] = useState<User | null>(null);
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+
     const listarUsuarios = async () => {
+        setLoading(true);
+        try {
+            const response = await apiUsers.get<User[]>("/users");
+            setUsers(response.data);
+        } catch (error) {
+            console.error("Error", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const verUsuario = async (id: number) => {
+        setLoading(true);
+        try {
+            const response = await apiUsers.get<User>("/users/" + id);
+            setUser(response.data);
+        } catch (error) {
+            console.error("Error", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const modificarUsuario = async (idR: number) => {
 
         setLoading(true);
 
         try {
-            const response = await apiUsers.get<User[]>('/users');
-            setUsers(response.data);
+            const usuarioActualizado: User = {
+                id: idR,
+                name,
+                email,
+                phone
+            }
+
+            const response = await apiUsers.put<User>("/users/" + idR, usuarioActualizado);
+
+            setUsers(users.map(u => u.id === idR ? response.data : u));
+
         } catch (error) {
-            console.error(`Error al obtener la lista de usuarios ${users}`);
-        }
-        finally {
+            console.error(`Error: ${error}`)
+        } finally {
             setLoading(false);
         }
 
     }
 
     return (
-        <>
-            <h2>Primeras Crud funciones</h2>
-
-            <h3>Listado de usuarios</h3>
-
-            <button disabled={loading} onClick={listarUsuarios}>{loading ? 'Cargando' : 'Mostrar lista de usuarios'}</button>
-
-            <table style={{ border: '1px solid grey' }}>
+        <div>
+            <h2>Listado de usuarios</h2>
+            <button onClick={() => listarUsuarios()} disabled={loading}>
+                {loading ? "Cargando..." : "Cargar lista de usuarios"}
+            </button>
+            <table>
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>email</th>
-                        <th>phone</th>
-                        <th>acciones</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody >
-                    {users.map(u => (
+                <tbody>
+
+                    {users.map((u) => (
                         <tr key={u.id}>
                             <td>{u.id}</td>
                             <td>{u.name}</td>
                             <td>{u.email}</td>
                             <td>{u.phone}</td>
                             <td>
-                                <button>ver</button>
-                                <button>editar</button>
-                                <button>borrar</button>
+                                <button onClick={() => verUsuario(u.id)}>Ver</button>
+                                <button onClick={() => {modificarUsuario(u.id)}}>Editar</button>
                             </td>
                         </tr>
-
                     ))}
                 </tbody>
             </table>
 
-        </>
-    )
-}
+            {user && (
+                <ul>
+                    <li>id: {user?.id}</li>
+                    <li>name: {user?.name}</li>
+                    <li>email: {user?.email}</li>
+                    <li>phone: {user?.phone}</li>
+                </ul>
+            )}
 
-export default CrudUsers;
+            {}
+
+        </div>
+    );
+}

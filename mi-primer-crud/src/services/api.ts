@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const apiUsers = axios.create(
     {
-        baseURL: 'https://jsonplaceholder.typicode.com/users/1',
+        baseURL: 'https://jsonplaceholder.typicode.com',
         timeout: 5000,
         headers:{
             'Content-Type': 'application/json'
