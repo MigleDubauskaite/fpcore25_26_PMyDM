@@ -108,7 +108,7 @@ function Clientes(): JSX.Element{
 
             await apiClientes.delete(`/clientes/${id}`);
             
-            setClientes(clientes.filter(c => c.id != id));
+            setClientes(clientes.filter(c => c.id !== id));
             
         } catch (error) {
             alert("Error al eliminar cliente");
@@ -142,6 +142,8 @@ function Clientes(): JSX.Element{
         <>
 
         <button onClick={()=>{obtenerClientes()}} disabled={loading}>Listar clientes</button>
+
+        {loading && <p>⏳ Cargando...</p>}
 
         <hr />
         <br />
