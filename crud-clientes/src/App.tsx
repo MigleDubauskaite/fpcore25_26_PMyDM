@@ -1,4 +1,5 @@
 import './App.css'
+import './assets/style.css'
 import Clientes from './components/Clientes';
 
 function App() {
