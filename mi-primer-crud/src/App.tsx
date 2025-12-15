@@ -3,12 +3,16 @@ import ComparacionFetchVsAxios from './components/ComparacionFetchVsAxios';
 import MultipleApis from './components/MultipleApis';
 import CrudUsers from './components/Crud-Function';
 import CrudUsuarios from './components/CrudUsuario';
+import PrimerCrud from './components/Mi-Primer-Crud';
 
 function App() {
 
 
   return (
     <>
+      <PrimerCrud></PrimerCrud>
+
+
       <hr />
       <br />
       <CrudUsuarios></CrudUsuarios>
