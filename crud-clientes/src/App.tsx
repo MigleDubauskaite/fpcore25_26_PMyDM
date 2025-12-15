@@ -1,4 +1,5 @@
 import './App.css'
+import Clientes from './components/Clientes';
 
 function App() {
 
@@ -6,6 +7,7 @@ function App() {
     <>
 
     <h1>CLIENTES</h1>
+    <Clientes></Clientes>
 
     </>
   )
