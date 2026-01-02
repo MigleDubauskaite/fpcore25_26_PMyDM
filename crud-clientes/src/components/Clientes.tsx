@@ -1,5 +1,6 @@
-import { useState, type JSX } from "react";
+import { useState} from "react";
 import { apiClientes } from "../service/api";
+import axios from "axios";
 
 interface Cliente {
     id:number;
@@ -10,7 +11,7 @@ interface Cliente {
     activo:boolean;
 }
 
-function Clientes(): JSX.Element{
+function Clientes() {
 
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -38,6 +39,23 @@ function Clientes(): JSX.Element{
         } finally{
             setLoading(false);
         }
+    }
+
+    // GET - por ID
+    const obtenerClienteId = async (id:number) => {
+
+        setLoading(true);
+
+        try {
+
+            const response = await axios.get<Cliente>(``);
+            
+        } catch (error) {
+            alert('Error al encontrar el cliente')
+        } finally{
+            setLoading(false);
+        }
+
     }
 
     // POST

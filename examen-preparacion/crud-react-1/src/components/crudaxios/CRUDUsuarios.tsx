@@ -3,7 +3,7 @@
 // DEFINIMOS INTERFACES TS
 
 import axios from "axios";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 // Datos completos que vienen de la API (incluye id)
 
@@ -94,7 +94,7 @@ function CrudUsuarios() {
 
     const deleteCustomerById = async (id: number) => {
 
-        if (!confirm(`¿Seguro que quieres borrar el cliente ${id}?`)) return;
+        if (!window.confirm(`¿Seguro que quieres borrar el cliente ${id}?`)) return;
 
         setError(null);
         setLoading(true);
@@ -116,12 +116,130 @@ function CrudUsuarios() {
     }
 
 
+    // 7:
+    // CREATE
+
+    const createCustomer = async (customerData: CustomerForm) => {
+
+        setError(null);
+        setLoading(true);
+
+        try {
+            const response = await axios.post<Customer>(BASE_URL, customerData);
+            setCustomers([...customers, response.data]);
+            resetForm();
+        } catch (error) {
+            console.error(error);
+            setError("Error al crear el cliente");
+        } finally {
+            setLoading(false);
+        }
+    }
+
+
+    // 8:
+    // UPDATE
+
+    const updateCustomer = async (id: number, customerData: CustomerForm) => {
+
+        setError(null);
+        setLoading(true);
+
+        try {
+            const response = await axios.put<Customer>(`${BASE_URL}/${id}`, customerData);
+            setCustomers(customers.map(c => c.id === id ? response.data : c));
+
+            // Actualizar vista individual si es el mismo
+            if (customer?.id === id) setCustomer(response.data);
+
+            resetForm();
+        } catch (error) {
+            console.error(error);
+            setError("Error al actualizar el cliente");
+        } finally {
+            setLoading(false);
+        }
+
+    }
+
+
+
+    // 9:
+    // FUNCIONES AUXILIARES
+
+    // MANEJAR ENVIO DEL FORMULARIO
+    const handleSubmit = (e: FormEvent) => {
+
+        e.preventDefault(); // Evitar recarga de página
+
+        if (!formData.name.trim() || !formData.country.trim()) {
+            setError('Por favor, completa todos los campos');
+            return;
+        }
+
+        // creación o edición:
+        if (editingId != null) updateCustomer(editingId, formData);
+        else createCustomer(formData);
+    }
+
+    // PREPARAR FORMULARIO PARA EDITAR
+    const handleEdit = (c: Customer) => {
+        setFormData({ name: c.name, country: c.country });
+        setEditingId(c.id);
+    }
+
+    // LIMPIAR FORMULARIO
+    const resetForm = () => {
+        setEditingId(null);
+        setFormData(formDataEnBlanco);
+    }
+
 
     return (
         <>
-            <div>
+            <div style={{border: '5px solid #a75ace43', padding: '50px'}}>
                 <h1>CRUD</h1>
                 <hr />
+
+                {error && (
+                    <div style={{ color: 'red', marginBottom: '1rem' }}>
+                        {error}
+                    </div>
+                )}
+
+                {/* SECCIÓN 7: FORMULARIO */}
+                <h3>Creación de customer</h3>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Nombre:
+                            <input type="text"
+                                value={formData.name}
+                                onChange={e => {
+                                    setFormData({ ...formData, name: e.target.value });
+                                    setError(null);
+                                }
+                                }
+                                disabled={loading}
+                                placeholder="Nombre del cliente" />
+                        </label>
+                        <br />
+
+                        <label>País:
+                            <input type="text"
+                                value={formData.country}
+                                onChange={e => setFormData({ ...formData, country: e.target.value })}
+                                disabled={loading}
+                                placeholder="País del cliente" />
+                        </label>
+                    </div>
+
+                    <button type="submit">{editingId ? 'Actualizar' : 'Crear'}</button>
+
+                    {editingId && (
+                        <button type="button" onClick={resetForm} disabled={loading}>Cancelar edición</button>
+                    )}
+
+                </form>
 
                 {/* SECCIÓN 5: VISTA INDIVIDUAL*/}
                 {/* READ - info de un cliente ID*/}
@@ -162,6 +280,8 @@ function CrudUsuarios() {
                                     <td>{c.country}</td>
                                     <td>
                                         <button onClick={() => findCustomerById(c.id)} disabled={loading}>Ver</button>
+
+                                        <button onClick={() => handleEdit(c)}>Editar</button>
 
                                         <button onClick={() => deleteCustomerById(c.id)} disabled={loading}>Borrar</button>
                                     </td>
