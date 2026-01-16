@@ -175,12 +175,10 @@ function Crud1() {
             return sortOrder === "asc"
                 ? Number(aValue) - Number(bValue)
                 : Number(bValue) - Number(aValue);
-        }
+        } 
 
         if (typeof aValue === "string") aValue = aValue.toLowerCase();
         if (typeof bValue === "string") bValue = bValue.toLowerCase();
-
-        if (aValue === bValue) return 0;
 
         const modifier = sortOrder === "asc" ? 1 : -1;
         return aValue > bValue ? modifier : -modifier; // Si el orden es ascendente: modifier = 1; si no: modifier = -1
@@ -315,6 +313,10 @@ function Crud1() {
                     />
                 </div>
 
+                 <button disabled={loading} onClick={mostrarTasks}>
+                    {loading ? "Loading" : "CARGAR TAREAS"}
+                </button>
+
                 <div style={{ display: "flex", gap: "40px" }}>
                     {tasks.length > 0 && (
                         <>
@@ -323,7 +325,8 @@ function Crud1() {
                                 <thead>
                                     <tr>
                                         <th onClick={() => handleSort("id")}>
-                                            ID {sortBy === "id" && (sortOrder === "asc" ? "↑" : "↓")}
+                                            ID
+                                            <b style={{color: sortOrder === 'asc' ? 'red' : 'green', cursor:'pointer'}}>{sortBy === "id" && sortOrder === "asc" ? "↑" : "↓" }</b> 
                                         </th>
                                         <th onClick={() => handleSort("title")}>
                                             TÍTULO {sortBy === "title" && (sortOrder === "asc" ? "↑" : "↓")}
@@ -386,9 +389,7 @@ function Crud1() {
                 </div>
 
                 <br /> <br />
-                <button disabled={loading} onClick={mostrarTasks}>
-                    {loading ? "Loading" : "CARGAR TAREAS"}
-                </button>
+               
             </div>
         </>
     );
