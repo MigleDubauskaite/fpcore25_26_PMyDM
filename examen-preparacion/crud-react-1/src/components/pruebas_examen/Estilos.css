@@ -1,0 +1,21 @@
+.error{
+    color: red;
+    font-style: oblique;
+}
+
+th, td{
+    border: 2px solid grey;
+}
+
+table{
+    border-collapse: collapse;
+    text-align: center;
+}
+
+button{
+    background-color: #ffb039;
+    border: 0;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
