@@ -183,7 +183,11 @@ function CrudProductos3() {
 
             const modifier = sortOrder === 'asc' ? 1 : -1;
 
-            return valorA > valorB ? modifier : -modifier;
+                    // 1 | 2  -1(asc)
+           // return valorA > valorB ? modifier : -(modifier);
+
+                  // 2 |  1  1)desc)
+           return valorA > valorB ? modifier : -(modifier);
         }
     });
 
