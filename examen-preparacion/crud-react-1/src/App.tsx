@@ -6,12 +6,14 @@ import CrudUsuario4 from './components/crudaxios/CrudUsuarios4';
 import Crud1 from './components/pruebas_examen/Crud1';
 import Crud2 from './components/pruebas_examen/Crud2';
 import CrudProductos3 from './components/pruebas_examen/Crud3Products';
+import Crud4Products from './components/pruebas_examen/Crud4Products';
 
 function App() {
   return (
     <>
+      <Crud4Products></Crud4Products>
+      <br /><br /><br /><br />
       <CrudProductos3></CrudProductos3>
-
       <br /><br /><br /><br />
       <Crud2></Crud2>
       <br /><br /><br /><br />
