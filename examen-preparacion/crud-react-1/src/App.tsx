@@ -7,10 +7,13 @@ import Crud1 from './components/pruebas_examen/Crud1';
 import Crud2 from './components/pruebas_examen/Crud2';
 import CrudProductos3 from './components/pruebas_examen/Crud3Products';
 import Crud4Products from './components/pruebas_examen/Crud4Products';
+import Crud5Productos from './components/pruebas_examen/Crud5Task';
 
 function App() {
   return (
     <>
+      <Crud5Productos></Crud5Productos>
+      <br /><br /><br /><br />
       <Crud4Products></Crud4Products>
       <br /><br /><br /><br />
       <CrudProductos3></CrudProductos3>
