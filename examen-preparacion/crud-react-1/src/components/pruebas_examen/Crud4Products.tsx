@@ -73,6 +73,9 @@ function Crud4Products() {
     // 3: eliminar
     const borrar = async (id: number, name: string) => {
 
+       /*  const tareaSeleccionada = productos.find(t => t.id === id);
+        if(!confirm(`¿Seguro que quiere borrar la tarea con id ${tareaSeleccionada?.id}?`)) return; */
+
         if (!window.confirm(`¿Quieres borrar el producto '${name}'`)) return;
 
         setError(null);
@@ -208,9 +211,12 @@ function Crud4Products() {
                 {error !== null && <p>{error}</p>}
 
                 {validationErrors.map((error, i) =>
+                <>
                     <ul key={i}>
                         <li style={{ color: 'red' }}>{error}</li>
                     </ul>
+                    <p key={i}>{error}</p>
+                </>
                 )}
 
                 <h1>Productos: CRUD 4</h1>
@@ -271,6 +277,7 @@ function Crud4Products() {
                             <li>{producto.price}</li>
                             <li>{producto.inStock ? 'SI' : 'NO'}</li>
                         </ol>
+
                         <button onClick={() => setProducto(null)}>Ocultar</button>
                     </div>
                 }
@@ -284,7 +291,7 @@ function Crud4Products() {
                             <table>
                                 <thead>
                                     <tr>
-                                        <th onClick={() => handleSort('id')}>id</th>
+                                        <th>id</th>
                                         <th onClick={() => handleSort('name')}>name</th>
                                         <th onClick={() => handleSort('category')}>category</th>
                                         <th onClick={() => handleSort('price')}>price</th>
